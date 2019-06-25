@@ -22,10 +22,13 @@ public class SchedulerComponent {
 	/***
 	 * fixedDelay: it takes time in milliseconds and run the method after every millisecond mentioned.
 	 * This delay is in between the last executed task and the new task.
+	 * @throws InterruptedException 
 	 */
 	@Scheduled(fixedDelay = 4000)
-	public void schedulerFixedDelay() {
+	public void schedulerFixedDelay() throws InterruptedException {
 		log.info("Under fixed delay: Current time is "+dateFormat.format(new Date()));
+		Thread.sleep(5000);
+		log.info("Under fixed delay end: Current time is "+dateFormat.format(new Date()));
 	}
 	
 	/***
@@ -38,8 +41,8 @@ public class SchedulerComponent {
 	@Scheduled(fixedRate = 4000)
 	public void schedulerFixedRate() throws InterruptedException {
 		log.info("Under fixed rate: Current time is "+dateFormat.format(new Date()));
-		Thread.sleep(2000);
-		log.info("Method's end here: Current time is "+dateFormat.format(new Date()));
+		Thread.sleep(5000);
+		log.info("Under fixed rate end: Current time is "+dateFormat.format(new Date()));
 	}
 	
 	/***
@@ -52,9 +55,12 @@ public class SchedulerComponent {
 	 * 0 0 8-10 * * *: 8, 9, 10 o'clock every day
 	 * 0 0 6,19 * * *: 6AM, 7PM everyday
 	 * 0 0 9-17 * * MON-FRI: 9 to 5 weekdays
+	 * @throws InterruptedException 
 	 */
-	@Scheduled(cron = "*/10 * * * * *")
-	public void schedulerCron() {
+	@Scheduled(cron = "*/2 * * * * *")
+	public void schedulerCron() throws InterruptedException {
 		log.info("Under Cron method: Current time is "+dateFormat.format(new Date()));
+		Thread.sleep(5000);
+		log.info("Under Cron method end: Current time is "+dateFormat.format(new Date()));
 	}
 }
